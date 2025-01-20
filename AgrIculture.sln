@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AgrIculture", "AgrIculture\AgrIculture.pyproj", "{92B1EAFC-1554-481E-B5CE-88BB16130CD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92B1EAFC-1554-481E-B5CE-88BB16130CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B1EAFC-1554-481E-B5CE-88BB16130CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C026EF8C-BD71-4F43-99D7-4288DCCCA93D}
+	EndGlobalSection
+EndGlobal
