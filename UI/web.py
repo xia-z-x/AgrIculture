@@ -1,5 +1,6 @@
 ﻿import http.server
 import socketserver
+from time import sleep
 import webbrowser
 import os
 import sys
@@ -107,4 +108,4 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
     print(f"Serving at port {PORT}")
     webbrowser.open(f'http://127.0.0.1:{PORT}/index.html')
-    httpd.serve_forever()
+    httpd.serve_forever()    
