@@ -1,4 +1,3 @@
-﻿```markdown
 # AgrIculture
 Powered by QDU
 
