@@ -106,6 +106,7 @@ python main.py
 
 ## 特别鸣谢 🙏  
 
+[QDU](https://www.qdu.edu.cn/)、[ChatGPT](https://chatgpt.com/)、[Bootstrap](https://icons.bootcss.com/)
 感谢所有支持本项目的团队成员、农业专家以及对智慧农业充满热情的伙伴们！  
 让我们共同努力，用科技与温情助力农业发展，让田间不再孤单！  
 
