@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎使用AgrIculture智慧农业系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .time {
+            font-size: 4em;  /* 放大时间 */
+            text-align: center;
+        }
+        .weather {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.5em;  /* 调整天气信息大小 */
+        }
+        .footer {
+            flex: 2;  /* 下半部分更大 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="time" id="current-time"></div>
+        <div class="weather" id="weather-info">天气: 晴朗</div>
+    </div>
+    <div class="footer">
+        <p>测试测试测试。</p>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

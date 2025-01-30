@@ -48,12 +48,14 @@ AgrIculture是一项聚焦智慧农业的创新实践项目。我们通过整合
 ```
 📂 Farmer-AI-Assistant
 ├── 📂 data                # 农业知识库与作物数据
+├── 📂 config              # 用户配置文件
 ├── 📂 DJI                 # 无人机图像采集与处理模块
 ├── 📂 image-analysis      # 图像识别与病害检测模块
 ├── 📂 weather             # 天气数据获取与整合模块
 ├── 📂 language-model      # 大语言模型建议生成模块
 ├── 📂 UI                 #用户界面
-├── 📂 main.py            #主程序
+├── main.py                #主程序
+├── requirements.txt       #项目依赖
 └── README.md              # 项目说明文档
 ```
 
