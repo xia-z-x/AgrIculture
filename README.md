@@ -1,5 +1,5 @@
 # AgrIculture
-Powered by [QDU❤️](https://www.qdu.edu.cn/)
+Powered by [QDU](https://www.qdu.edu.cn/)❤️
 
 > **智慧农业的温暖实践：用无人机、人工智能图像识别和大语言模型助力现代农业发展。**
 
