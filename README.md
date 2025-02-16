@@ -54,6 +54,7 @@ AgrIculture是一项聚焦智慧农业的创新实践项目。我们通过整合
 ├── 📂 weather             # 天气数据获取与整合模块
 ├── 📂 language-model      # 大语言模型建议生成模块
 ├── 📂 UI                 #用户界面
+├── 📂 TTS                #文本朗读
 ├── main.py                #主程序
 ├── requirements.txt       #项目依赖
 └── README.md              # 项目说明文档
