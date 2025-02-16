@@ -38,6 +38,9 @@ def main():
         # 图像分析（覆盖记录至./result.txt）
         #run_subprocess(["python", "./image-analysis/image-analysis.py"])
         
+        # TTS
+        #run_subprocess(["python", "./TTS/TTS.py"])
+        
         # 清理临时文件
         #shutil.rmtree('runtime')
         logging.info("临时目录 'runtime' 已删除.")
