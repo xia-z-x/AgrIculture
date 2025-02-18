@@ -46,7 +46,7 @@ AgrIculture是一项聚焦智慧农业的创新实践项目。我们通过整合
 ## 项目架构 🛠  
 
 ```
-📂 Farmer-AI-Assistant
+📂 AgrIculture
 ├── 📂 data                # 农业知识库与作物数据
 ├── 📂 config              # 用户配置文件
 ├── 📂 DJI                 # 无人机图像采集与处理模块
