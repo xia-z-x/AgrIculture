@@ -53,7 +53,7 @@ def play_text_as_speech(file_path):
 
 def main():
     # 固定文件路径
-    file_path = "C:\\Users\\gongpiqi\\Desktop\\TSS\\result.txt"#将文件路径改为想要打开的文件
+    file_path = "./language-model/result.txt"#将文件路径改为想要打开的文件
 
     # 直接播放文本作为语音
     play_text_as_speech(file_path)
