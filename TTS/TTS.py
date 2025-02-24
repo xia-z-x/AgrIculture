@@ -6,8 +6,13 @@ import pyttsx3
 # 设置日志配置
 logging.basicConfig(level=logging.INFO)
 
-def text_to_speech(text):
+def text_to_speech(text,output_path):
     try:
+        # 如果目标文件已存在，先删除
+        if os.path.exists(output_path):
+            os.remove(output_path)
+            logging.info(f"已删除已存在的文件: {output_path}")
+            
         # 初始化pyttsx3引擎
         engine = pyttsx3.init()
 
@@ -31,11 +36,17 @@ def text_to_speech(text):
             logging.warning("未找到支持中文的语音包，将使用默认语音。")
 
         # 将文本转换为语音并播放
-        engine.say(text)
+        #engine.say(text)
+        #engine.runAndWait()
+    #except Exception as e:
+        #logging.error(f"Text to speech conversion failed: {e}")
+        # 保存文本为 MP3 文件
+        engine.save_to_file(text, output_path)
         engine.runAndWait()
+        logging.info(f"语音文件已保存到: {output_path}")
     except Exception as e:
-        logging.error(f"Text to speech conversion failed: {e}")
-
+        logging.error(f"Text-to-speech conversion failed: {e}")
+        
 def play_text_as_speech(file_path):
     try:
         # 使用UTF-8编码打开并读取文本文件内容
@@ -43,7 +54,7 @@ def play_text_as_speech(file_path):
             text = file.read()
         
         # 转换文本到语音
-        text_to_speech(text)
+        text_to_speech(text,output_path)
     except FileNotFoundError:
         logging.error(f"无法找到文件: {file_path}, 请检查文件名或路径是否正确。")
     except UnicodeDecodeError:
@@ -53,8 +64,8 @@ def play_text_as_speech(file_path):
 
 def main():
     # 固定文件路径
-    file_path = "./language-model/result.txt"#将文件路径改为想要打开的文件
-
+    file_path = "./Cache/language_model_result.txt"#将文件路径改为想要打开的文件
+    output_path = "./Cache/TTS_result.mp3"
     # 直接播放文本作为语音
     play_text_as_speech(file_path)
 
