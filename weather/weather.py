@@ -62,7 +62,7 @@ def get_weather(api_key, lat, lon):
 if __name__ == "__main__":
     file_path = 'C:\\Users\\gongpiqi\\Desktop\\API\\api_key.txt' # 确保使用双反斜杠或原始字符串处理Windows路径
     #将file_path替换为真正的路径
-    api_key = read_api_key(file_path)
+    api_key = read_api_key("./config/weather_api_key.txt")
     if api_key:
         location = get_location()
         if location:
