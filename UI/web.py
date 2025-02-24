@@ -24,6 +24,7 @@ def read_port_from_file(file_path):
 
 # HTML 内容
 weather_info = get_weather()  # 获取天气信息
+weather_view = ("天气：" + weather_info['description'])
 language_text = (lambda file_path: (open(file_path, 'r', encoding='utf-8').read().strip() if os.path.exists(file_path) else "今日尚未巡飞。"))('./Cache/language_model_result.txt')  # 获取建议内容
 
 html_content = f"""

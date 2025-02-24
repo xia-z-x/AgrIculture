@@ -1,3 +1,4 @@
+from codecs import latin_1_decode
 import requests
 
 def read_api_key():
@@ -31,8 +32,11 @@ def get_location():
         print(f"无法获取位置信息: {e}")
         return None
 
-def get_weather(lat, lon):
+def get_weather():
     api_key = read_api_key()
+    location = get_location()
+    lat = location['lat']
+    lon = location['lon']
     """根据经纬度获取天气信息"""
     base_url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
@@ -62,11 +66,13 @@ def get_weather(lat, lon):
 
 # 使用方法：
 if __name__ == "__main__":
-    file_path = 'C:\\Users\\gongpiqi\\Desktop\\API\\api_key.txt' # 确保使用双反斜杠或原始字符串处理Windows路径
+    #file_path = 'C:\\Users\\gongpiqi\\Desktop\\API\\api_key.txt' # 确保使用双反斜杠或原始字符串处理Windows路径
     #将file_path替换为真正的路径
     if 1 == 1 :
         location = get_location()
+        #print(location)
         if location:
+            #print (location['lat'])
             weather_info = get_weather(location['lat'], location['lon'])
             if weather_info and isinstance(weather_info, dict):
                 print(f"城市: {location['city']}, 天气: {weather_info['description']}, 温度: {weather_info['temperature']}°C, 风速: {weather_info['wind_speed']}m/s, 风向: {weather_info['wind_direction']}°")
