@@ -3,8 +3,9 @@ requests
 pywin32
 pyttsx3
 comtypes
-#pywin32_postinstall.py #执行pywin32_postinstall.py脚本以确保所有必要的组件都已正确配置。
 webbrowser
 socketserver
 server
 time
+opencv-python
+numpy
