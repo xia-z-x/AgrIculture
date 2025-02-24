@@ -54,7 +54,7 @@ def play_text_as_speech(file_path):
             text = file.read()
         
         # 转换文本到语音
-        text_to_speech(text,output_path)
+        text_to_speech(text,"./Cache/TTS_result.mp3")
     except FileNotFoundError:
         logging.error(f"无法找到文件: {file_path}, 请检查文件名或路径是否正确。")
     except UnicodeDecodeError:
@@ -65,7 +65,7 @@ def play_text_as_speech(file_path):
 def main():
     # 固定文件路径
     file_path = "./Cache/language_model_result.txt"#将文件路径改为想要打开的文件
-    output_path = "./Cache/TTS_result.mp3"
+    #output_path = "./Cache/TTS_result.mp3"
     # 直接播放文本作为语音
     play_text_as_speech(file_path)
 
