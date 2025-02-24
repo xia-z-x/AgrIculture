@@ -70,17 +70,22 @@ git clone https://github.com/xia-z-x/AgrIculture.git
 cd AgrIculture
 ```
 
-### 2️⃣ 安装依赖  
+### 2️⃣ 填写API
+从  https://api.openweathermap.org/  获取API并写入  ./config/weather_api_key.txt
+
+### 3️⃣ 安装依赖  
 确保计算机已安装 Python 3.12 及以上版本，运行以下命令安装项目依赖：  
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ 启动项目  
-运行以下命令启动无人机图像分析与建议生成的主程序：  
+### 4️⃣ 启动项目  
+运行以下命令启动主程序：  
 ```bash
-python main.py
+python ./main.py
 ```
+### 特别说明   
+主程序启动后会立即执行一次巡飞（若条件合适），并会在此后的每天8点进行巡飞并更新内容
 
 ---
 
