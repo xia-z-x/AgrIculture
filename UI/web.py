@@ -150,7 +150,8 @@ body {{
     </div>
 
     <!-- 页脚 -->
-    <div class="footer">
+    <audio id="audio" src="./Cache/TTS_result.mp3"></audio>
+    <div class="footer" onclick="document.getElementById('audio').play()">
         <p>{language_text}</p>
     </div>
 
