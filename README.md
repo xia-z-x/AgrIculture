@@ -71,7 +71,7 @@ cd AgrIculture
 ```
 
 ### 2️⃣ 填写API
-从https://api.openweathermap.org/获取API并写入./config/weather_api_key.txt
+从  https://api.openweathermap.org/  获取API并写入  ./config/weather_api_key.txt
 
 ### 3️⃣ 安装依赖  
 确保计算机已安装 Python 3.12 及以上版本，运行以下命令安装项目依赖：  
