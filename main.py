@@ -61,11 +61,12 @@ if __name__ == "__main__":
     # 22点后拒绝执行，防止bug(todo)
     
     main()
-    # 0点清除所有result内容(todo)
+    # 0点清除所有result内容（含TTS）（将大语言改为“今日尚未巡飞。”）(todo)
     print("1")
     sleep(1)
     main()#test pass!!!!!!
-    # 0点刷新Web页面并即刻结束进程(todo)
+    # 0点秒更新+刷新Web页面并即刻结束进程(todo)
+    
     
     # 下一个8点重新启动(todo)
     
