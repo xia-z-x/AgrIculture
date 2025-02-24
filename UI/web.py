@@ -23,8 +23,13 @@ def read_port_from_file(file_path):
         return 5678  # 默认端口
 
 # HTML 内容
-weather_info = get_weather()  # 获取天气信息
-weather_view = ("天气：" + weather_info['description'])
+try:
+    weather_info = get_weather()  # 获取天气信息
+    weather_view = ("天气：" + weather_info['description'])
+except Exception as e:  # 捕获所有异常
+    weather_info =  "获取天气失败，请检查连接"
+    weather_view = ("天气：" + weather_info)
+
 language_text = (lambda file_path: (open(file_path, 'r', encoding='utf-8').read().strip() if os.path.exists(file_path) else "今日尚未巡飞。"))('./Cache/language_model_result.txt')  # 获取建议内容
 
 html_content = f"""
@@ -134,7 +139,7 @@ body {{
     <!-- 头部 -->
     <div class="header">
         <div class="time" id="current-time"></div>
-        <div class="weather" id="weather-info">{weather_info}</div>
+        <div class="weather" id="weather-info">{weather_view}</div>
         <!-- 设置图标 -->
         <div class="icon settings-icon" title="设置">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
