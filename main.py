@@ -29,24 +29,24 @@ def main():
 
     try:
         # 创建临时目录
-        os.makedirs('runtime', exist_ok=True)
-        logging.info("创建临时目录 'runtime'.")
+        os.makedirs('./Cache/DJI', exist_ok=True)
+        logging.info("创建临时目录 'DJI'.")
         
         # 开始飞行操作（记录至/runtime）
-        #run_subprocess(["python", "./DJI/DJI.py"])
+        run_subprocess(["python", "./DJI/DJI.py"])
 
         # 图像分析（覆盖记录至./result.txt）
-        #run_subprocess(["python", "./image-analysis/image-analysis.py"])
-        
-        # TTS
-        #run_subprocess(["python", "./TTS/TTS.py"])
+        run_subprocess(["python", "./image-analysis/image-analysis.py"])
         
         # 清理临时文件
-        #shutil.rmtree('runtime')
-        logging.info("临时目录 'runtime' 已删除.")
+        shutil.rmtree('runtime')
+        logging.info("临时目录 'DJI' 已删除.")
 
         # 生成建议（覆盖记录至./result.txt）
-        #run_subprocess(["python", "./language-model/language-model.py"])
+        run_subprocess(["python", "./language-model/language-model.py"])
+        
+        # TTS
+        run_subprocess(["python", "./TTS/TTS.py"])
 
     except Exception as e:
         logging.error(f"发生意外错误: {e}")
