@@ -40,99 +40,103 @@ html_content = f"""
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>欢迎使用AgrIculture智慧农业系统</title>
     <style>
-        /* 通用样式 */
-* {{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}}
-body {{
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-}}
-
-/* 头部样式 */
-.header {{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
-}}
-.time {{
-    font-size: 5rem; /* 字体增大 */
-    font-weight: bold;
-    text-align: center;
-    color: #333;
-}}
-.weather {{
-    position: absolute;
-    bottom: 20px;
-    right: 60px;
-    font-size: 2rem; /* 字体增大 */
-    font-style: italic;
-    color: #555;
-}}
-
-/* 图标样式 */
-.icon {{
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    fill: #555;
-    transition: transform 0.2s ease-in-out, fill 0.2s ease-in-out;
-}}
-.icon:hover {{
-    transform: scale(1.2);
-    fill: #388e3c;
-}}
-.settings-icon {{
-    top: 20px;
-    right: 20px;
-}}
-.drone-icon {{
-    top: 20px;
-    left: 20px;
-}}
-
-/* 页脚样式 */
-.footer {{
-    flex: 1.5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    font-size: 2rem; /* 字体增大 */
-    font-weight: 500;
-    line-height: 1.5;
-    text-align: center;
-    color: #444;
-    border-top: 1px solid #ddd;
-}}
-
-/* 响应式设计 */
-@media (max-width: 768px) {{
-    .time {{
-        font-size: 4rem; /* 小屏幕字体调整 */
-    }}
-    .weather {{
-        font-size: 1.5rem; /* 小屏幕字体调整 */
-        right: 20px;
-    }}
-    .footer {{
-        font-size: 1.25rem; /* 小屏幕字体调整 */
-        padding: 15px;
-    }}
-}}
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        body {{
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }}
+        .header {{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }}
+        .time {{
+            font-size: 5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }}
+        .weather {{
+            position: absolute;
+            bottom: 20px;
+            right: 60px;
+            font-size: 2rem;
+            font-style: italic;
+            color: #555;
+        }}
+        .icon {{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            fill: #555;
+            transition: transform 0.2s ease-in-out, fill 0.2s ease-in-out;
+        }}
+        .icon:hover {{
+            transform: scale(1.2);
+            fill: #388e3c;
+        }}
+        .settings-icon {{
+            top: 20px;
+            right: 20px;
+        }}
+        .drone-icon {{
+            top: 20px;
+            left: 20px;
+        }}
+        .settings-menu {{
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            font-size: 1rem;
+            color: #333;
+        }}
+        .footer {{
+            flex: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            font-size: 2rem;
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center;
+            color: #444;
+            border-top: 1px solid #ddd;
+            cursor: pointer;
+        }}
+        @media (max-width: 768px) {{
+            .time {{
+                font-size: 4rem;
+            }}
+            .weather {{
+                font-size: 1.5rem;
+                right: 20px;
+            }}
+            .footer {{
+                font-size: 1.25rem;
+                padding: 15px;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -141,13 +145,16 @@ body {{
         <div class="time" id="current-time"></div>
         <div class="weather" id="weather-info">{weather_view}</div>
         <!-- 设置图标 -->
-        <div class="icon settings-icon" title="设置">
+        <div class="icon settings-icon" title="设置" onclick="toggleSettingsMenu()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
             </svg>
         </div>
+        <div class="settings-menu" id="settings-menu">
+            <p>设置选项</p>
+        </div>
         <!-- 无人机图标 -->
-        <div class="icon drone-icon" title="无人机">
+        <div class="icon drone-icon" title="无人机" onclick="navigateToFly()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                 <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599"/>
             </svg>
@@ -156,7 +163,7 @@ body {{
 
     <!-- 页脚 -->
     <audio id="audio" src="./Cache/TTS_result.mp3"></audio>
-    <div class="footer" onclick="document.getElementById('audio').play()">
+    <div class="footer" onclick="toggleAudio()">
         <p>{language_text}</p>
     </div>
 
@@ -168,6 +175,27 @@ body {{
         }}
         setInterval(updateTime, 1000);
         updateTime();
+
+        // 切换设置菜单显示
+        function toggleSettingsMenu() {{
+            const menu = document.getElementById('settings-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }}
+
+        // 跳转到无人机页面
+        function navigateToFly() {{
+            window.location.href = './UI/fly.html';
+        }}
+
+        // 切换音频播放
+        function toggleAudio() {{
+            const audio = document.getElementById('audio');
+            if (audio.paused) {{
+                audio.play();
+            }} else {{
+                audio.pause();
+            }}
+        }}
     </script>
 </body>
 </html>

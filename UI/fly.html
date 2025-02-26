@@ -38,10 +38,46 @@
             button:hover {
                 background-color: #0056b3;
             }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+            .back-button:hover {
+                background-color: #218838;
+            }
     </style>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-sA+eP0sNPt8M8NfyhiS1Hx9ejGqZ3pMdTVKp6tsHfFI="
+          crossorigin="" />
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">返回</button>
+    <h1 style="text-align: center;">巡飞区域标定工具</h1>
+    <p style="text-align: center;">点击地图选择飞行区域的顶点（起飞点默认在左下角）</p>
+    <div id="map"></div>
+    <button onclick="clearPoints()">清除选点</button>
+    <button onclick="savePointsToServer()">保存选点信息</button>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-QV5rdMoezDB7jXt1GZxZ2KP8J6Auu1p+v+u1n1B1pZY="
+            crossorigin=""></script>
     <script>
         let map, points = [];
 
+        // 初始化地图
         function initMap() {
             // 使用 Leaflet.js 加载地图
             map = L.map('map').locate({ setView: true, maxZoom: 16 });
@@ -57,6 +93,7 @@
             });
         }
 
+        // 添加点标记
         function addPointMarker(lat, lng) {
             L.circleMarker([lat, lng], {
                 color: 'red',
@@ -64,6 +101,7 @@
             }).addTo(map);
         }
 
+        // 保存点信息到服务器
         function savePointsToServer() {
             if (points.length === 0) {
                 alert('没有选点，请点击地图添加点后再保存！');
@@ -93,6 +131,7 @@
                 });
         }
 
+        // 清除所有点
         function clearPoints() {
             points.length = 0;
             map.eachLayer(function (layer) {
@@ -101,22 +140,13 @@
                 }
             });
         }
-    </script>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-            integrity="sha256-QV5rdMoezDB7jXt1GZxZ2KP8J6Auu1p+v+u1n1B1pZY="
-            crossorigin=""></script>
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-          integrity="sha256-sA+eP0sNPt8M8NfyhiS1Hx9ejGqZ3pMdTVKp6tsHfFI="
-          crossorigin="" />
-</head>
-<body>
-    <h1>巡飞区域标定工具</h1>
-    <p>点击地图选择飞行区域的顶点（起飞点默认在左下角）</p>
-    <div id="map"></div>
-    <button onclick="clearPoints()">清除选点</button>
-    <button onclick="savePointsToServer()">保存选点信息</button>
-    <script>
+
+        // 返回按钮功能
+        function goBack() {
+            window.location.href = '../index.html';
+        }
+
+        // 确保在页面加载完成后初始化地图
         window.onload = initMap;
     </script>
 </body>
