@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巡飞区域标定工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+
+        .point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+    <script>
+        let map, points = [];
+
+        function initMap() {
+            // 使用 Leaflet.js 加载地图
+            map = L.map('map').locate({ setView: true, maxZoom: 16 });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // 添加单击事件
+            map.on('click', function (e) {
+                const { lat, lng } = e.latlng;
+                points.push([lat, lng]);
+                addPointMarker(lat, lng);
+            });
+        }
+
+        function addPointMarker(lat, lng) {
+            L.circleMarker([lat, lng], {
+                color: 'red',
+                radius: 5
+            }).addTo(map);
+        }
+
+        function savePointsToServer() {
+            if (points.length === 0) {
+                alert('没有选点，请点击地图添加点后再保存！');
+                return;
+            }
+
+            const data = points.map(point => point.join(',')).join('\n');
+
+            // 通过 fetch 将选点数据发送到后端
+            fetch('http://localhost:3000/save-fly-info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('选点信息已成功保存到服务器的 ./config/fly_info.txt 文件中！');
+                    } else {
+                        alert('保存失败，请检查服务器！');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    alert('保存失败，请检查网络连接或服务器！');
+                });
+        }
+
+        function clearPoints() {
+            points.length = 0;
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.CircleMarker) {
+                    map.removeLayer(layer);
+                }
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-QV5rdMoezDB7jXt1GZxZ2KP8J6Auu1p+v+u1n1B1pZY="
+            crossorigin=""></script>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-sA+eP0sNPt8M8NfyhiS1Hx9ejGqZ3pMdTVKp6tsHfFI="
+          crossorigin="" />
+</head>
+<body>
+    <h1>巡飞区域标定工具</h1>
+    <p>点击地图选择飞行区域的顶点（起飞点默认在左下角）</p>
+    <div id="map"></div>
+    <button onclick="clearPoints()">清除选点</button>
+    <button onclick="savePointsToServer()">保存选点信息</button>
+    <script>
+        window.onload = initMap;
+    </script>
+</body>
+</html>
