@@ -60,7 +60,10 @@ if __name__ == "__main__":
         """        
         #if user_input.lower() == 'exit':
         #    break
-        response = chat_with_model(user_input)
+        try:
+             response = chat_with_model(user_input)  
+        except Exception as e:  # 捕获所有异常
+            print ("建议生成失败，请检查日志输出！") 
         #print(f"Bot: {response}")
         file_path = "./Cache/language_model_result.txt"
     
