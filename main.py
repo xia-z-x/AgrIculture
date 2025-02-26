@@ -43,7 +43,7 @@ def main():
         logging.info("临时目录 'DJI' 已删除.")
 
         # 生成建议（覆盖记录至./result.txt）
-        run_subprocess(["python", "./language-model/language-model.py"])
+        run_subprocess(["python", "./language-model/language_model.py"])
         
         # TTS
         run_subprocess(["python", "./TTS/TTS.py"])
