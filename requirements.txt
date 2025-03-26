@@ -10,3 +10,4 @@ time
 opencv-python
 numpy
 torch
+accelerate>=0.26.0
